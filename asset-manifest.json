@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Burger-App-React-/static/css/main.b100e6da.chunk.css",
+    "main.js": "/Burger-App-React-/static/js/main.4a54eaac.chunk.js",
+    "main.js.map": "/Burger-App-React-/static/js/main.4a54eaac.chunk.js.map",
+    "runtime-main.js": "/Burger-App-React-/static/js/runtime-main.e1d337ce.js",
+    "runtime-main.js.map": "/Burger-App-React-/static/js/runtime-main.e1d337ce.js.map",
+    "static/js/2.69f0873e.chunk.js": "/Burger-App-React-/static/js/2.69f0873e.chunk.js",
+    "static/js/2.69f0873e.chunk.js.map": "/Burger-App-React-/static/js/2.69f0873e.chunk.js.map",
+    "index.html": "/Burger-App-React-/index.html",
+    "precache-manifest.5039a63a148c553f088dd5e09a8dbe28.js": "/Burger-App-React-/precache-manifest.5039a63a148c553f088dd5e09a8dbe28.js",
+    "service-worker.js": "/Burger-App-React-/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "/Burger-App-React-/static/css/main.b100e6da.chunk.css.map",
+    "static/media/logo.svg": "/Burger-App-React-/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e1d337ce.js",
+    "static/js/2.69f0873e.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.4a54eaac.chunk.js"
+  ]
+}
