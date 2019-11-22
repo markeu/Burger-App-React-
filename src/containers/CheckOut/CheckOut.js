@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import checkoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 
-export class CheckOut extends Component {
+export class Checkout extends Component {
     state = {
         ingredients: {
             salad: 1,
@@ -10,13 +10,33 @@ export class CheckOut extends Component {
             bacon: 2
         }
     }
+
+    componentDidMount(){
+      const query = new URLSearchParams(this.props.location.search);
+      const ingredients = {};
+      for (const params in query.entries()) {
+        ingredients[params[0]] = +params[1]
+      }
+      this.setState({ingredients: ingredients})
+    }
+
+    checkoutCancelledHandler = () => {
+      this.props.history.goBack();
+    }
+
+    checkoutContinuedHandler = () => {
+      this.props.history.replace('/checkout/contact-data')
+    }
   render() {
     return (
       <div>
-        <checkoutSummary ingredients={this.state.ingredients}/>
+        <CheckoutSummary 
+        ingredients={this.state.ingredients}
+        checkoutCancelled={this.checkoutCancelledHandler}
+        checkoutContinued={this.checkoutContinuedHandler}/>
       </div>
     )
   }
 }
 
-export default CheckOut
+export default Checkout;
