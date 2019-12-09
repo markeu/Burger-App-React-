@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import axios from '../../axios-orders';
 import Aux from '../../hoc/Auxillary/auxillary';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -8,26 +8,17 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinners from '../../components/UI/Spinners/Spinners';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../../axios-orders';
 import * as burgerBuilderActions from '../../store/actions/index';
 
 
 class BurgerBuilder extends Component{
     state = {
         purchasing: false,
-        loading: false,
-        error: false
     }
 
     componentDidMount(){
         console.log(this.props)
-        axios.get('https://my-burger-project-eb398.firebaseio.com/ingredients.json')
-                .then(res => {
-                    this.setState({ingredients: res.data})
-                })
-                .catch(error => {
-                    this.setState({error: true})
-                })
+        this.props.onInitIngredients()       
     }
     updatePurchaseState (ingredients) {
         const sum = Object.keys(ingredients)
@@ -94,7 +85,7 @@ class BurgerBuilder extends Component{
         }
 
         let orderSummary = null
-        let burger = this.state.error ? <p>ingredients cannot be loaded!</p> : <Spinners />
+        let burger = this.props.error ? <p>ingredients cannot be loaded!</p> : <Spinners />
 
         if( this.props.ings ){
             burger = (
@@ -114,11 +105,6 @@ class BurgerBuilder extends Component{
                 purchaseCancelled={this.purchaseHandlerClosed}
                 purchaseContinue={this.purchaseContinueHandler}
                 ingredients={this.props.ings}/>
-                    
-            if (this.state.loading){
-                orderSummary = <Spinners />
-            }
-
         }
 
         return(
@@ -135,13 +121,15 @@ class BurgerBuilder extends Component{
 const mapStateToProps = state => {
     return {
         ings: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onIngredientsAdded: (igName) => dispatch(burgerBuilderActions.addIngredients(igName)),
-        onIngredientsRemoved: (igName) => dispatch(burgerBuilderActions.removeIngredients(igName))
+        onIngredientsRemoved: (igName) => dispatch(burgerBuilderActions.removeIngredients(igName)),
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
     }
 }
 export default connect( mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
