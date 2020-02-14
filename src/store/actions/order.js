@@ -36,8 +36,8 @@ export const purchaseBurger = ( orderData ) => {
         })
     }
 };
-
-export const purchaseInit = () => {
+//  for re-direction after the checkout page have been loaded.
+export const purchaseInit = () => { 
     return {
         type: actionTypes.PURCHASE_INIT
     }

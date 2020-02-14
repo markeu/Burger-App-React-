@@ -20,6 +20,8 @@ class BurgerBuilder extends Component{
         console.log(this.props)
         this.props.onInitIngredients()       
     }
+
+    // logic for knowing when to change Purchase State 
     updatePurchaseState (ingredients) {
         const sum = Object.keys(ingredients)
                     .map(igKey => {
